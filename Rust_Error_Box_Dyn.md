@@ -29,7 +29,7 @@
 ### Ok - MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="01_ignore_error_ok.rs"
+export EXAMPLE_SCRIPT_FILE="01_ok_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -66,7 +66,7 @@ EoF
 ### Error - MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="02_ignore_error_err.rs"
+export EXAMPLE_SCRIPT_FILE="01_err_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -110,7 +110,7 @@ it’s same as unwrap but lets us add extra error message.
 ### Ok MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="03_terminate_the_program_ok.rs"
+export EXAMPLE_SCRIPT_FILE="02_ok_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -147,10 +147,9 @@ EoF
 ### Err MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="04_terminate_the_program_err.rs"
+export EXAMPLE_SCRIPT_FILE="02_err_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-
 use std::fs;
 
 fn main() {
@@ -158,10 +157,6 @@ fn main() {
     .expect("Can't read ./Not_Exists_Cargo.toml");
   println!("{}", content)
 }
-
-## 03 - Use a fallback value
-
-
 
 /*
 export FILE_NAME=$EXAMPLE_SCRIPT_FILE
@@ -199,7 +194,50 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ReturnCode => 101
 ```
 
-## Use a fallback value - works
+## 03 - Use a fallback value
+
+> In some cases, you can handle the error by falling back to a default value.
+
+```rust
+export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+use std::fs;
+
+use std::env;
+
+fn main() {
+  let port = env::var("PORT").unwrap_or("3000".to_string());
+  println!("{}", port);
+}
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
+
+## garbage
+
+> In some cases, you can handle the error by falling back to a default value
 
 ```bash
 cat << EoF > ./examples/fallback_value.rs
