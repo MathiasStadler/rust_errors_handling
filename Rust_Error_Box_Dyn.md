@@ -204,7 +204,7 @@ ReturnCode => 101
 
 ```bash
 #!/bin/sh
-export PORT="3372"
+export PORT="01234"
 echo $PORT
 ```
 
@@ -254,9 +254,6 @@ unset PORT
 echo $PORT
 ```
 
-## Bubble up the error
-
-
 - create program
 
 ```rust
@@ -293,6 +290,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+## Bubble up the error
 
 ## garbage
 
