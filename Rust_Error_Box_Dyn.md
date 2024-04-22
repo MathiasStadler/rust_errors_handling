@@ -19,7 +19,7 @@
 }
 ```
 
-## ignore error - NOT nice error handling
+## ignore the error - NOT nice error handling
 
 ## Use a fallback value - works
 
