@@ -26,7 +26,7 @@
     - We’re prototyping our code and don’t want to spend time on error handling.
     - We’re confident that the error won’t occur.
 
-### Ok
+### Ok - MatchArms
 
 ```rust
 export EXAMPLE_SCRIPT_FILE="01_ignore_error_ok.rs"
@@ -63,7 +63,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Ok
+### Error - MatchArms
 
 ```rust
 export EXAMPLE_SCRIPT_FILE="02_ignore_error_err.rs"
@@ -107,10 +107,10 @@ it’s better to fail fast by terminating the program.
 > We can use unwrap as before or use expect -
 it’s same as unwrap but lets us add extra error message.
 
-### Ok
+### Ok MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="02_terminate_the_program_ok.rs"
+export EXAMPLE_SCRIPT_FILE="03_terminate_the_program_ok.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -144,10 +144,10 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Err
+### Err MatchArms
 
 ```rust
-export EXAMPLE_SCRIPT_FILE="03_terminate_the_program_err.rs"
+export EXAMPLE_SCRIPT_FILE="04_terminate_the_program_err.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
