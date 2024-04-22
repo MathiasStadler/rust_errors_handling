@@ -216,7 +216,7 @@ use std::fs;
 
 use std::env;
 
-fn main() {
+pub fn main() {
   let port = env::var("PORT").unwrap_or("3000".to_string());
   println!("{}", port);
 }
@@ -254,17 +254,18 @@ unset PORT
 echo $PORT
 ```
 
+## Bubble up the error
+
+
 - create program
 
 ```rust
 export EXAMPLE_SCRIPT_FILE="03_err_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-use std::fs;
-
 use std::env;
 
-fn main() {
+pub fn main() {
   let port = env::var("PORT").unwrap_or("3000".to_string());
   println!("{}", port);
 }
