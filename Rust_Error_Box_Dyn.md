@@ -198,8 +198,66 @@ ReturnCode => 101
 
 > In some cases, you can handle the error by falling back to a default value.
 
+### Ok MatchArms
+
+- set env for positive run => OK
+
+```bash
+#!/bin/sh
+export PORT="3372"
+echo $PORT
+```
+
 ```rust
 export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+use std::fs;
+
+use std::env;
+
+fn main() {
+  let port = env::var("PORT").unwrap_or("3000".to_string());
+  println!("{}", port);
+}
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
+### Err MatchArms
+
+- unset env for negative run => Err
+
+```bash
+#!/bin/sh
+unset PORT
+echo $PORT
+```
+
+- create program
+
+```rust
+export EXAMPLE_SCRIPT_FILE="03_err_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
