@@ -154,7 +154,8 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
 
 fn main() {
-  let content = fs::read_to_string("./Err_Cargo.toml").expect("Can't read Err_Cargo.toml");
+  let content = fs::read_to_string("./Not_Exists_Cargo.toml")
+    .expect("Can't read ./Not_Exists_Cargo.toml");
   println!("{}", content)
 }
 
