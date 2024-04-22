@@ -63,6 +63,22 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+- output
+
+```bash
+Running `target/debug/examples/01_ok_ignore_error`
+[package]
+name = "rust_errors_handling"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+ReturnCode => 0
+```
+
 ### Error - MatchArms
 
 ```rust
@@ -184,9 +200,7 @@ EoF
 ### output
 
 ```bash
-Compiling rust_errors_handling v0.1.0 (/home/trapapa/rust_errors_handling)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.39s
-     Running `target/debug/examples/04_terminate_the_program_err`
+Running `target/debug/examples/04_terminate_the_program_err`
 thread 'main' panicked at examples/04_terminate_the_program_err.rs:5:55:
 Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound, 
     message: "No such file or directory" }
