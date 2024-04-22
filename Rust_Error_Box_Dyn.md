@@ -26,9 +26,11 @@ export EXAMPLE_SCRIPT_FILE="01_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
-fn main(){
+use std::fs;
 
-    println!("template");
+fn main() {
+  let content = fs::read_to_string("./Cargo.toml").unwrap();
+  println!("{}", content)
 }
 
 /*
