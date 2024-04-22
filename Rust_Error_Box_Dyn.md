@@ -21,9 +21,10 @@
 
 ## 01 - ignore the error - NOT nice error handling
 
-- Let’s start with the simplest scenario where we just ignore the error. This sounds careless but has a couple of legitimate use cases:
-  - We’re prototyping our code and don’t want to spend time on error handling.
-  - We’re confident that the error won’t occur.
+- Let’s start with the simplest scenario where we just ignore the error.
+  - This sounds careless but has a couple of legitimate use cases:
+    - We’re prototyping our code and don’t want to spend time on error handling.
+    - We’re confident that the error won’t occur.
 
 ### Ok
 
