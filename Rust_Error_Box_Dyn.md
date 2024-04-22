@@ -21,8 +21,14 @@
 
 ## 01 - ignore the error - NOT nice error handling
 
+- Let’s start with the simplest scenario where we just ignore the error. This sounds careless but has a couple of legitimate use cases:
+- - We’re prototyping our code and don’t want to spend time on error handling.
+- - We’re confident that the error won’t occur.
+
+### Ok
+
 ```rust
-export EXAMPLE_SCRIPT_FILE="01_ignore_error.rs"
+export EXAMPLE_SCRIPT_FILE="01_ignore_error_ok.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -56,10 +62,49 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+### Ok
+
+```rust
+export EXAMPLE_SCRIPT_FILE="02_ignore_error_err.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+
+use std::fs;
+
+fn main() {
+  let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
+  println!("{}", content)
+}
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
 ## 02 - Terminate the program
 
-> Some errors cannot be handled or recovered from. In these cases, it’s better to fail fast by terminating the program.
-> We can use unwrap as before or use expect - it’s same as unwrap but lets us add extra error message.
+> Some errors cannot be handled or recovered from. In these cases,
+it’s better to fail fast by terminating the program.
+> We can use unwrap as before or use expect -
+it’s same as unwrap but lets us add extra error message.
 
 ### Ok
 
