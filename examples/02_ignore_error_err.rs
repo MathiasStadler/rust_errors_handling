@@ -1,12 +1,13 @@
+
 use std::fs;
 
 fn main() {
-    let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
-    println!("{}", content)
+  let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
+  println!("{}", content)
 }
 
 /*
-export FILE_NAME=02_terminate_the_program.rs
+export FILE_NAME=02_ignore_error_err.rs
 export FILE_DIR_NAME=examples/
 git add $FILE_DIR_NAME/$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => $FILE_DIR_NAME/$FILE_NAME"
