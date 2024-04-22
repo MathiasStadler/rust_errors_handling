@@ -6,6 +6,20 @@
 
 ## Beginner's guide to Error Handling in Rust
 
+## generate testcase from here
+
+```bash
+# sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
+```
+
+```bash
+cd && \
+cd /tmp && \
+cargo run \
+--manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
+--example 03_err_use_fallback_value
+```
+
 ## basic
 
 - The Result<T, E> type is an enum that has two variants
