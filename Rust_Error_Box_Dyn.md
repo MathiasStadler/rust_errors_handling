@@ -159,6 +159,10 @@ fn main() {
   println!("{}", content)
 }
 
+## 03 - Use a fallback value
+
+
+
 /*
 export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
@@ -182,6 +186,18 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+### output
+
+```bash
+Compiling rust_errors_handling v0.1.0 (/home/trapapa/rust_errors_handling)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.39s
+     Running `target/debug/examples/04_terminate_the_program_err`
+thread 'main' panicked at examples/04_terminate_the_program_err.rs:5:55:
+Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound, 
+    message: "No such file or directory" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ReturnCode => 101
+```
 
 ## Use a fallback value - works
 
