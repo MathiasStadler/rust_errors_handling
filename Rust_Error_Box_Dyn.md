@@ -56,6 +56,48 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+02 - Terminate the program
+
+> Some errors cannot be handled or recovered from. In these cases, it’s better to fail fast by terminating the program.
+> We can use unwrap as before or use expect - it’s same as unwrap but lets us add extra error message.
+
+```rust
+export EXAMPLE_SCRIPT_FILE="02_terminate_the_program.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+
+use std::fs;
+
+fn main() {
+  let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
+  println!("{}", content)
+}
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
+
+
 ## Use a fallback value - works
 
 ```bash
