@@ -116,6 +116,17 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+- output
+
+```bash
+Running `target/debug/examples/01_err_ignore_error`
+thread 'main' panicked at examples/01_err_ignore_error.rs:4:65:
+called `Result::unwrap()` on an `Err` value: Os { code: 2, kind: NotFound,
+    message: "No such file or directory" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ReturnCode => 101
+```
+
 ## 02 - Terminate the program
 
 > Some errors cannot be handled or recovered from. In these cases,
