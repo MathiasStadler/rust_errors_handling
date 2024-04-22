@@ -1,4 +1,6 @@
-fn main() {
+
+fn main(){
+
     println!("template");
 }
 
