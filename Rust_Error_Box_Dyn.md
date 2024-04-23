@@ -257,8 +257,6 @@ export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
 
-use std::env;
-
 pub fn main() {
   let port = env::var("PORT").unwrap_or("3000".to_string());
   println!("{}", port);
