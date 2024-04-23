@@ -13,7 +13,7 @@
 # sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 # sed -n '/^```rust/,/^```rust/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 # sed -n '/^```rust/,/^```/ p' </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md |  sed '/^```/ d' > /tmp/temp1.txt
-
+# sh -x /tmp/temp1.txt
 ```
 
 ```bash
