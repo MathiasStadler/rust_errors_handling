@@ -9,7 +9,10 @@
 ## generate testcase from here
 
 ```bash
+
 # sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
+# sed -n '/^```rust/,/^```rust/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
+
 ```
 
 ```bash
@@ -26,7 +29,7 @@ cargo run \
 - - Ok(T) for successful value or
 - - Err(E) for error value
 
-```rust
+```bash
  enum Result<T, E> {
    Ok(T),
    Err(E),
@@ -657,7 +660,7 @@ EoF
 
 ```rust
 export EXAMPLE_SCRIPT_FILE="99_template.rs"
-export EXAMPLE_SCRIPT_DIR="examples/errors_handling/"
+export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 fn main(){
