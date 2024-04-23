@@ -1,8 +1,9 @@
+
 use std::fs;
 
 fn main() {
-    let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
-    println!("{}", content)
+  let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
+  println!("{}", content)
 }
 
 /*

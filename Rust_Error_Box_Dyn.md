@@ -11,7 +11,7 @@
 ```bash
 set 
 export MD_SCRIPT="/home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md"
-export SCRIPTS_OUTPUT="/tmp/rust_scripts.txt"
+export SCRIPTS_OUTPUT="/tmp/rust_scripts.sh"
 export DIRECTORY_OUTPUT="/tmp/examples"
 
 # [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
@@ -19,7 +19,7 @@ export DIRECTORY_OUTPUT="/tmp/examples"
 # </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md | \
 # sed '/^```/ d' > $MD_RUST_SCRIPTS
 echo "DIRECTORY_OUTPUT => $DIRECTORY_OUTPUT"
-[ -d $DIRECTORY_OUTPUT ] && rm $DIRECTORY_OUTPUT/*
+[ -d $DIRECTORY_OUTPUT ] && rm -rf $DIRECTORY_OUTPUT/*
 [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
 sed -n '/^```rust/,/^```/ p'  \
 <"$MD_SCRIPT"| \
@@ -32,6 +32,30 @@ date +"%B %d %H:%M"
 # sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 # sed -n '/^```rust/,/^```rust/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 ```
+
+## extract build script
+
+> sed -n '/^\/\*/,/^\*\// p' <"$file"
+> sed -n '/^\/\*/,/^\*\// p' <"$file"|sed '/^\/\*/ d'|sed '/^\*\// d'
+> ls  |grep -v .rs |xargs rm
+
+```bash
+#!/bin/env bash
+FILES_DIRECTORY="examples";
+for FILE_NAME in $FILES_DIRECTORY/*;
+   do  
+   echo "Processing $FILE_NAME file...";
+   task="task_$(echo $FILE_NAME | cut -d . -f 1).sh"
+   echo $task;
+   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >$task;
+done
+
+
+```
+
+> for FILE_NAME in $FILES_DIRECTORY/*;   do  echo "Processing $FILE_NAME file..."; sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d'>>$(echo ./$FILE_NAME | cut -d . -f 1).sh; done
+
+## run rust script with Cargo.toml from another path
 
 ```bash
 cd && \
