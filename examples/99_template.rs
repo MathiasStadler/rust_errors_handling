@@ -1,10 +1,12 @@
-fn main() {
+
+fn main(){
+
     println!("template");
 }
 
 /*
 export FILE_NAME=99_template.rs
-export FILE_DIR_NAME=examples/errors_handling
+export FILE_DIR_NAME=examples/
 git add $FILE_DIR_NAME/$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => $FILE_DIR_NAME/$FILE_NAME"
 git push
@@ -19,6 +21,6 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => $FILE_DIR_NAME/$FILE_NAME"
 git push
-cargo run --example $(echo $FILE_DIR_NAME/$FILE_NAME | cut -d . -f 1)
+cargo run --example $(echo $FILE_NAME | cut -d . -f 1)
 echo "ReturnCode => $?"
 */
