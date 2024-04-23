@@ -12,12 +12,14 @@
 set 
 export MD_SCRIPT="/home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md"
 export SCRIPTS_OUTPUT="/tmp/rust_scripts.txt"
+export DIRECTORY_OUTPUT="/tmp/examples"
 
 # [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
 # sed -n '/^```rust/,/^```/ p'  \
 # </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md | \
 # sed '/^```/ d' > $MD_RUST_SCRIPTS
-
+echo "DIRECTORY_OUTPUT => $DIRECTORY_OUTPUT"
+[ -d $DIRECTORY_OUTPUT ] && rm $DIRECTORY_OUTPUT/*
 [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
 sed -n '/^```rust/,/^```/ p'  \
 <"$MD_SCRIPT"| \
