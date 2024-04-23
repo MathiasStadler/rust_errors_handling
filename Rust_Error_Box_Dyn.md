@@ -6,14 +6,29 @@
 
 ## Beginner's guide to Error Handling in Rust
 
-## generate testcase from here
+## extract rust code block from markdown file
 
 ```bash
+set 
+export MD_SCRIPT="/home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md"
+export SCRIPTS_OUTPUT="/tmp/rust_scripts.txt"
 
+# [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
+# sed -n '/^```rust/,/^```/ p'  \
+# </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md | \
+# sed '/^```/ d' > $MD_RUST_SCRIPTS
+
+[ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
+sed -n '/^```rust/,/^```/ p'  \
+<"$MD_SCRIPT"| \
+sed '/^```/ d' > $SCRIPTS_OUTPUT
+ls -l $SCRIPTS_OUTPUT
+/bin/ls -ls $SCRIPTS_OUTPUT | awk '{print "",$10,$7,$8,$9}'
+date +"%B %d %H:%M"
+
+# first step
 # sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 # sed -n '/^```rust/,/^```rust/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
-# sed -n '/^```rust/,/^```/ p' </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md |  sed '/^```/ d' > /tmp/temp1.txt
-# sh -x /tmp/temp1.txt
 ```
 
 ```bash
