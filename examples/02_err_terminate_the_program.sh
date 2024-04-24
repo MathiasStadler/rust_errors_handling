@@ -1,12 +1,5 @@
-use std::fs;
+#!/usr/bin/env bash
 
-pub fn main() {
-    let content =
-        fs::read_to_string("./Not_Exists_Cargo.toml").expect("Can't read ./Not_Exists_Cargo.toml");
-    println!("{}", content)
-}
-
-/*
 export FILE_NAME=02_err_terminate_the_program.rs
 export FILE_DIR_NAME=examples/
 git add $FILE_DIR_NAME/$FILE_NAME
@@ -23,6 +16,5 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => $FILE_DIR_NAME/$FILE_NAME"
 git push
-cargo run --example $(echo $FILE_NAME | cut -d . -f 1)
+cargo run --example "$(echo $FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => $?"
-*/

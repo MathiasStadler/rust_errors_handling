@@ -57,8 +57,10 @@ done
 ```bash
 #!/usr/bin/env bash
 FILE="/tmp/shebang_insert.sh";
-printf "\n" >$FILE &&  sed  -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
 ```
+
+## set -euxo
 
 ## with shebang
 
@@ -68,10 +70,13 @@ FILES_DIRECTORY="examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
    do  
    echo "Processing $FILE_NAME file...";
-   task="./$(echo $FILE_NAME | cut -d . -f 1).sh"
-   echo "task => $task";
-   echo "#!/bin/env bash" >$task;
-   # sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$task;
+   SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
+   echo "SCRIPT_FILE => $SCRIPT_FILE";
+   echo "generate SCRIPT_FILE => $SCRIPT_FILE";
+   printf "\n" >$SCRIPT_FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE
+   # old
+   # echo "#!/bin/env bash" >$SCRIPT_FILE;
+   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE;
 done
 
 ```
@@ -139,7 +144,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
