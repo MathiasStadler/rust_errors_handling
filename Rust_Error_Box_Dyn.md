@@ -50,6 +50,29 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >$task;
 done
 
+```
+
+## with shebnag stupid method
+
+```bash
+#!/usr/bin/env bash
+FILE="/tmp/shebang_insert.sh";
+printf "\n" >$FILE &&  sed  -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+```
+
+## with shebang
+
+```bash
+#!/bin/env bash
+FILES_DIRECTORY="examples";
+for FILE_NAME in $FILES_DIRECTORY/*;
+   do  
+   echo "Processing $FILE_NAME file...";
+   task="./$(echo $FILE_NAME | cut -d . -f 1).sh"
+   echo "task => $task";
+   echo "#!/bin/env bash" >$task;
+   # sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$task;
+done
 
 ```
 
