@@ -6,18 +6,14 @@
 
 ## Beginner's guide to Error Handling in Rust
 
-## extract rust code block from markdown file
+## first step - extract all rust code block from markdown file
 
 ```bash
-set 
+# set -x
 export MD_SCRIPT="/home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md"
-export SCRIPTS_OUTPUT="/tmp/rust_scripts.sh"
+export SCRIPTS_OUTPUT="/tmp/markdown_rust_codeblock.sh"
 export DIRECTORY_OUTPUT="/tmp/examples"
 
-# [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
-# sed -n '/^```rust/,/^```/ p'  \
-# </home/trapapa/rust_errors_handling/Rust_Error_Box_Dyn.md | \
-# sed '/^```/ d' > $MD_RUST_SCRIPTS
 echo "DIRECTORY_OUTPUT => $DIRECTORY_OUTPUT"
 [ -d $DIRECTORY_OUTPUT ] && rm -rf $DIRECTORY_OUTPUT/*
 [ -f $SCRIPTS_OUTPUT ] && rm $SCRIPTS_OUTPUT
@@ -27,21 +23,20 @@ sed '/^```/ d' > $SCRIPTS_OUTPUT
 ls -l $SCRIPTS_OUTPUT
 /bin/ls -ls $SCRIPTS_OUTPUT | awk '{print "",$10,$7,$8,$9}'
 date +"%B %d %H:%M"
-
-# first step
-# sed -n '/^```/,/^```/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
-# sed -n '/^```rust/,/^```rust/ p' <Rust_Error_Box_Dyn.md | sed '/^```/ d' > /tmp/temp.txt
 ```
 
-## extract build script
+## next step - generate example script
 
-> sed -n '/^\/\*/,/^\*\// p' <"$file"
-> sed -n '/^\/\*/,/^\*\// p' <"$file"|sed '/^\/\*/ d'|sed '/^\*\// d'
-> ls  |grep -v .rs |xargs rm
+```bash
+# change to PROJECT_FOLDER
+sh +x /tmp/markdown_rust_codeblock.sh
+```
+
+## next step - extract build script
 
 ```bash
 #!/bin/env bash
-FILES_DIRECTORY="examples";
+FILES_DIRECTORY="./examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
    do  
    echo "Processing $FILE_NAME file...";
@@ -49,7 +44,6 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    echo $task;
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >$task;
 done
-
 ```
 
 ## with shebang stupid method
@@ -59,8 +53,6 @@ done
 FILE="/tmp/shebang_insert.sh";
 printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
 ```
-
-## set -euxo
 
 ## with shebang
 
@@ -74,8 +66,6 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    echo "SCRIPT_FILE => $SCRIPT_FILE";
    echo "generate SCRIPT_FILE => $SCRIPT_FILE";
    printf "\n" >$SCRIPT_FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE
-   # old
-   # echo "#!/bin/env bash" >$SCRIPT_FILE;
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE;
 done
 
