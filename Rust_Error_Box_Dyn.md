@@ -50,11 +50,16 @@ FILES_DIRECTORY="examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
    do  
    echo "Processing $FILE_NAME file...";
+   if [[ $FILE_NAME == *rs ]]; then
    SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
    echo "SCRIPT_FILE => $SCRIPT_FILE";
    echo "generate SCRIPT_FILE => $SCRIPT_FILE";
    printf "\n" >$SCRIPT_FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE;
+   else
+   echo "NOT *.rs script => $FILE_NAME ";
+   echo "next file ";
+   fi
 done
 
 ```
@@ -70,7 +75,7 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    # SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
    # echo " => $SCRIPT_FILE";
    if [[ $FILE_NAME == *sh ]]; then
-    echo "sh script execute $FILE_NAME"
+    echo "sh script execute $FILE_NAME";
     echo "start ..";
     source "$FILE_NAME";
     printf "ExitCode =>$?\n";
@@ -324,7 +329,7 @@ echo $PORT
 export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-use std::fs;
+use std::env;
 
 pub fn main() {
   let port = env::var("PORT").unwrap_or("3000".to_string());
