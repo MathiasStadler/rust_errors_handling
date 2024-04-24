@@ -77,8 +77,8 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    if [[ $FILE_NAME == *sh ]]; then
     echo "";
     echo "#################";
-    echo "start ..";
-    echo "sh script execute $FILE_NAME";
+    echo "start => $FILE_NAME";
+    # echo "sh script execute $FILE_NAME";
     echo "#################";
     echo "";
     source "$FILE_NAME";
