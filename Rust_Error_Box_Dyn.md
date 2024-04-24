@@ -52,7 +52,7 @@ done
 
 ```
 
-## with shebnag stupid method
+## with shebang stupid method
 
 ```bash
 #!/usr/bin/env bash
