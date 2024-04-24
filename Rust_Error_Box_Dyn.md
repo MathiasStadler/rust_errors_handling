@@ -75,11 +75,19 @@ for FILE_NAME in $FILES_DIRECTORY/*;
    # SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
    # echo " => $SCRIPT_FILE";
    if [[ $FILE_NAME == *sh ]]; then
-    echo "sh script execute $FILE_NAME";
+    echo "";
+    echo "#################";
     echo "start ..";
+    echo "sh script execute $FILE_NAME";
+    echo "#################";
+    echo "";
     source "$FILE_NAME";
-    printf "ExitCode =>$?\n";
-    echo "end .. ";
+    echo "";
+    echo "#################";
+    echo "finished ..";
+    printf "ExitCode => $? <= $FILE_NAME\n";
+    echo "#################";
+    echo "";
    else
     echo "NOT *.sh script => $FILE_NAME ";
     echo "next file ";
