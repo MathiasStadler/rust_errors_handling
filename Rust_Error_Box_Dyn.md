@@ -45,7 +45,7 @@ FILES_DIRECTORY="examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
    do  
    echo "Processing $FILE_NAME file...";
-   task="task_$(echo $FILE_NAME | cut -d . -f 1).sh"
+   task="$(echo $FILE_NAME | cut -d . -f 1).sh"
    echo $task;
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >$task;
 done
