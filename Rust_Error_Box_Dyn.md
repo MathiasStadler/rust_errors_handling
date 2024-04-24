@@ -34,27 +34,15 @@ sh +x /tmp/markdown_rust_codeblock.sh
 
 ## next step - extract build script
 
-```bash
-#!/bin/env bash
-FILES_DIRECTORY="./examples";
-for FILE_NAME in $FILES_DIRECTORY/*;
-   do  
-   echo "Processing $FILE_NAME file...";
-   task="$(echo $FILE_NAME | cut -d . -f 1).sh"
-   echo $task;
-   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >$task;
-done
-```
+> create script with shebang - stupid method
+>
+> ```bash
+> #!/usr/bin/env bash
+> FILE="/tmp/shebang_insert.sh";
+> printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+> ```
 
-## with shebang stupid method
-
-```bash
-#!/usr/bin/env bash
-FILE="/tmp/shebang_insert.sh";
-printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
-```
-
-## with shebang
+## create starter scripts for each example
 
 ```bash
 #!/bin/env bash
@@ -71,7 +59,29 @@ done
 
 ```
 
-> for FILE_NAME in $FILES_DIRECTORY/*;   do  echo "Processing $FILE_NAME file..."; sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d'>>$(echo ./$FILE_NAME | cut -d . -f 1).sh; done
+## script starter for scripts inside folder examples
+
+```bash
+#!/bin/env bash
+FILES_DIRECTORY="examples";
+for FILE_NAME in $FILES_DIRECTORY/*;
+   do  
+   echo "Processing $FILE_NAME file...";
+   # SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
+   # echo " => $SCRIPT_FILE";
+   if [[ $FILE_NAME == *sh ]]; then
+    echo "sh script execute $FILE_NAME"
+    echo "start ..";
+    source "$FILE_NAME";
+    printf "ExitCode =>$?\n";
+    echo "end .. ";
+   else
+    echo "NOT *.sh script => $FILE_NAME ";
+    echo "next file ";
+   fi
+done
+
+```
 
 ## run rust script with Cargo.toml from another path
 
