@@ -43,7 +43,7 @@ date +"%B %d %H:%M"
 sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
 ```
 
-## next step - generate starter scripts for each example
+## next step - generate starter scripts from each example
 
 ```bash
 #!/usr/bin/env bash -x
@@ -72,7 +72,7 @@ done
 
 ```
 
-## next step - generate starter script for each script inside examples folder
+## next step - run all generated starter script for each examples
 
 ```bash
 #!/bin/env bash
@@ -86,7 +86,6 @@ for FILE_NAME in $FILES_DIRECTORY/*;
     echo "";
     echo "#################";
     echo "start => $FILE_NAME";
-    # echo "sh script execute $FILE_NAME";
     echo "#################";
     echo "";
     source "$FILE_NAME";
@@ -104,7 +103,7 @@ done
 
 ```
 
-## nice knowing - run rust script with Cargo.toml from another path
+## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
 
   ```bash
   cd && \
