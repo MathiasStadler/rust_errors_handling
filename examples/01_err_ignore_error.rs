@@ -1,9 +1,8 @@
-
 use std::fs;
 
 pub fn main() {
-  let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
-  println!("{}", content)
+    let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
+    println!("{}", content)
 }
 
 /*
