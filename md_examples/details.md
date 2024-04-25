@@ -3,13 +3,13 @@
 ## sample
 
 <details>
-    <summary>Zusammenfassung</summary>
-    Hier kommt der Inhalt.
+    <summary>Summary</summary>
+    Here comes the content.
 </details>
 
 ## sample open at start
 
 <details open>
-    <summary>Offener Bereich</summary>
-    Dieser Inhalt ist direkt zu sehen.
+    <summary>Open area at start</summary>
+    This content can be seen directly.
 </details>
