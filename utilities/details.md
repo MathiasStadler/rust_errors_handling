@@ -2,15 +2,7 @@
 
 ## sample
 
-<details>
-    <summary>
-
-        ### Eine Überschrift
-
-    </summary>
-    <div>
-
-        Test **mit Markdown**.
-
-    </div>
+<details open>
+    <summary>Offener Bereich</summary>
+    Dieser Inhalt ist direkt zu sehen.
 </details>
