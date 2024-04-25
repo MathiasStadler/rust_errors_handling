@@ -1,3 +1,4 @@
 /target
 /garbage
 /examples/*.rs
+run_examples/*.sh
