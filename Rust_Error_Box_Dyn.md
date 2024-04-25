@@ -43,7 +43,7 @@ date +"%B %d %H:%M"
 sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
 ```
 
-## next step - create starter scripts for each example
+## next step - generate starter scripts for each example
 
 ```bash
 #!/usr/bin/env bash -x
@@ -72,7 +72,7 @@ done
 
 ```
 
-## next step - script starter for scripts inside folder examples
+## next step - generate starter script for each script inside examples folder
 
 ```bash
 #!/bin/env bash
@@ -104,22 +104,23 @@ done
 
 ```
 
-## next step - run rust script with Cargo.toml from another path
+## nice knowing - run rust script with Cargo.toml from another path
 
-```bash
-cd && \
-cd /tmp && \
-cargo run \
---manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
---example 03_err_use_fallback_value
-```
+  ```bash
+  cd && \
+  cd /tmp && \
+  cargo run \
+  --manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
+  --example 03_err_use_fallback_value
+  ```
 
-## create new script with shebang
+## nice knowing - create new script with shebang
 
  ```bash
  #!/usr/bin/env bash
  FILE="/tmp/shebang_insert.sh";
- printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+ printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && \
+ cat $FILE;
  ```
 
 </details>
