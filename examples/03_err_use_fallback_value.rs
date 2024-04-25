@@ -1,6 +1,7 @@
 use std::env;
 
 pub fn main() {
+    println!("ENV PORT variable not set => unwrap_or with 0815");
     let port = env::var("PORT").unwrap_or("0815".to_string());
     println!("{}", port);
 }
