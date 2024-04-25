@@ -289,6 +289,24 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+- output
+
+```bash
+Running `target/debug/examples/02_ok_terminate_the_program`
+[package]
+name = "rust_errors_handling"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.38"
+reqwest = "0.12.4"
+
+ReturnCode => 0
+```
+
 ### Err MatchArms
 
 ```rust
@@ -324,6 +342,18 @@ cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
 echo "ReturnCode => \$?"
 */
 EoF
+```
+
+- output
+-- bash: sh +x run_examples/02_err_terminate_the_program.sh
+
+```bash
+Finished dev [unoptimized + debuginfo] target(s) in 0.08s
+     Running `target/debug/examples/02_err_terminate_the_program`
+thread 'main' panicked at examples/02_err_terminate_the_program.rs:5:55:
+Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ReturnCode => 101
 ```
 
 ### output
