@@ -2,6 +2,13 @@
 
 ## sample
 
+<details>
+    <summary>Zusammenfassung</summary>
+    Hier kommt der Inhalt.
+</details>
+
+## sample open at start
+
 <details open>
     <summary>Offener Bereich</summary>
     Dieser Inhalt ist direkt zu sehen.
