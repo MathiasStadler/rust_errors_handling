@@ -6,6 +6,9 @@
 
 ## Beginner's guide to Error Handling in Rust
 
+<details>
+    <summary>Summary</summary>
+
 ## first step - extract all rust code block from markdown file
 
 ```bash
@@ -42,7 +45,7 @@ sh +x /tmp/markdown_rust_codeblock.sh
 > printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
 > ```
 
-## create starter scripts for each example
+## next step - create starter scripts for each example
 
 ```bash
 #!/bin/env bash
@@ -64,7 +67,7 @@ done
 
 ```
 
-## script starter for scripts inside folder examples
+## next step - script starter for scripts inside folder examples
 
 ```bash
 #!/bin/env bash
@@ -96,7 +99,7 @@ done
 
 ```
 
-## run rust script with Cargo.toml from another path
+## next step - run rust script with Cargo.toml from another path
 
 ```bash
 cd && \
@@ -105,6 +108,8 @@ cargo run \
 --manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
 --example 03_err_use_fallback_value
 ```
+
+</details>
 
 ## basic
 
