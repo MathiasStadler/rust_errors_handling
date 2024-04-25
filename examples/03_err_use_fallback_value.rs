@@ -1,7 +1,7 @@
 use std::env;
 
 pub fn main() {
-    let port = env::var("PORT").unwrap_or("1234".to_string());
+    let port = env::var("PORT").unwrap_or("Port Not Set".to_string());
     println!("{}", port);
 }
 
