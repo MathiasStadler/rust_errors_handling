@@ -45,14 +45,15 @@ sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
 ## next step - extract build script
 
 <details>
-    <summary>generate scripts form markdown</summary>
-> create script with shebang - stupid method
->
-> ```bash
-> #!/usr/bin/env bash
-> FILE="/tmp/shebang_insert.sh";
-> printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
-> ```
+    <summary>create script with shebang - stupid method</summary>
+create script with shebang - stupid method
+
+ ```bash
+ #!/usr/bin/env bash
+ FILE="/tmp/shebang_insert.sh";
+ printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+ ```
+
 </details>
 
 ## next step - create starter scripts for each example
