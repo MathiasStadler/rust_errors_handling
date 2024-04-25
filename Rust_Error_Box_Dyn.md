@@ -356,24 +356,13 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ReturnCode => 101
 ```
 
-### output
-
-```bash
-Running `target/debug/examples/04_terminate_the_program_err`
-thread 'main' panicked at examples/04_terminate_the_program_err.rs:5:55:
-Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound,
-    message: "No such file or directory" }
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-ReturnCode => 101
-```
-
 ## 03 - Use a fallback value
 
 > In some cases, you can handle the error by falling back to a default value.
 
 ### Ok MatchArms
 
-- set env for positive run => OK
+- set env PORT for positive run => OK
 
 ```bash
 #!/bin/sh
@@ -413,6 +402,16 @@ cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
 echo "ReturnCode => \$?"
 */
 EoF
+```
+
+- output
+-- cmd: sh +x run_examples/03_ok_use_fallback_value.sh
+
+```bash
+ Finished dev [unoptimized + debuginfo] target(s) in 0.08s
+     Running `target/debug/examples/03_ok_use_fallback_value`
+3000
+ReturnCode => 0
 ```
 
 ### Err MatchArms
@@ -459,6 +458,18 @@ cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
 echo "ReturnCode => \$?"
 */
 EoF
+```
+
+- output
+-- cmd: sh +x run_examples/03_err_use_fallback_value.sh
+
+```bash
+Compiling rust_errors_handling v0.1.0 (/home/trapapa/rust_errors_handling)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.40s
+     Running `target/debug/examples/03_err_use_fallback_value`
+ENV PORT variable not set => unwrap_or with 0815
+0815
+ReturnCode => 0
 ```
 
 ## Bubble up the error
