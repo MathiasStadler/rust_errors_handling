@@ -6,6 +6,9 @@
 
 ## Beginner's guide to Error Handling in Rust
 
+<details>
+    <summary>Generate scripts from markdown</summary>
+
 ## first step - extract all rust code block from markdown file
 
 ````bash
