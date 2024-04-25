@@ -1,7 +1,7 @@
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
   println!("{}", content)
 }
@@ -23,6 +23,6 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => $FILE_DIR_NAME/$FILE_NAME"
 git push
-cargo run --example $(echo $FILE_NAME | cut -d . -f 1)
+cargo run --example "$(echo $FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => $?"
 */

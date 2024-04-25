@@ -11,7 +11,7 @@
 
 ## first step - extract all rust code block from markdown file
 
-```bash
+````bash
 #!/usr/bin/env bash -x
 export MD_SCRIPT="./Rust_Error_Box_Dyn.md"
 export SCRIPTS_OUTPUT="./run_examples/extract_rust_codeblocks_from_markdown.sh"
@@ -21,7 +21,7 @@ if [ -f ./$MD_SCRIPT ]; then
     echo 'MD_SCRIPT exists => $MD_SCRIPT.'
 else
     echo 'File does not exist.'
-    return 
+    return
 fi
 echo "DIRECTORY_OUTPUT => $DIRECTORY_OUTPUT"
 echo "cleanup"
@@ -34,7 +34,7 @@ sed '/^```/ d' >> $SCRIPTS_OUTPUT
 ls -l $SCRIPTS_OUTPUT
 /bin/ls -ls $SCRIPTS_OUTPUT | awk '{print "",$10,$7,$8,$9}'
 date +"%B %d %H:%M"
-```
+````
 
 ## next step - generate example script
 
@@ -61,7 +61,7 @@ FILES_DIR="examples";
 STARTER_FILES_DIR="run_examples";
 for FILE_NAME in $FILES_DIR/*;
    do
-   echo "";  
+   echo "";
    echo "START => Processing $FILE_NAME file...";
    if [[ $FILE_NAME == *rs ]]; then
    SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
@@ -70,7 +70,7 @@ for FILE_NAME in $FILES_DIR/*;
    SCRIPT_FILE_NAME="$STARTER_FILES_DIR/$(basename $SCRIPT_FILE)";
    echo "script_file_name => $SCRIPT_FILE_NAME";
    printf "\n" >$SCRIPT_FILE_NAME &&  \
-   sed -i '1 i\#\!\/usr\/bin\/env bash' $STARTER_FILES_DIR/$SCRIPT_FILE
+   sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE_NAME
    sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE_NAME;
    else
    echo "NOT *.rs script => $FILE_NAME ";
@@ -88,7 +88,7 @@ done
 #!/bin/env bash
 FILES_DIRECTORY="examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
-   do  
+   do
    echo "Processing $FILE_NAME file...";
    # SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
    # echo " => $SCRIPT_FILE";
@@ -155,7 +155,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Cargo.toml").unwrap();
   println!("{}", content)
 }
@@ -208,7 +208,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
   println!("{}", content)
 }
@@ -230,7 +230,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -250,9 +250,9 @@ ReturnCode => 101
 ## 02 - Terminate the program
 
 > Some errors cannot be handled or recovered from. In these cases,
-it’s better to fail fast by terminating the program.
+> it’s better to fail fast by terminating the program.
 > We can use unwrap as before or use expect -
-it’s same as unwrap but lets us add extra error message.
+> it’s same as unwrap but lets us add extra error message.
 
 ### Ok MatchArms
 
@@ -263,7 +263,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
   println!("{}", content)
 }
@@ -299,7 +299,7 @@ export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Not_Exists_Cargo.toml")
     .expect("Can't read ./Not_Exists_Cargo.toml");
   println!("{}", content)
@@ -333,7 +333,7 @@ EoF
 ```bash
 Running `target/debug/examples/04_terminate_the_program_err`
 thread 'main' panicked at examples/04_terminate_the_program_err.rs:5:55:
-Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound, 
+Can't read ./Not_Exists_Cargo.toml: Os { code: 2, kind: NotFound,
     message: "No such file or directory" }
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ReturnCode => 101
@@ -442,7 +442,7 @@ export EXAMPLE_SCRIPT_FILE="99_template.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
-fn main(){
+pub fn main(){
 
     println!("template");
 }

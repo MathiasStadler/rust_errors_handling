@@ -6,7 +6,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Cargo.toml").unwrap();
   println!("{}", content)
 }
@@ -38,7 +38,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Not_Exists_Cargo.toml").unwrap();
   println!("{}", content)
 }
@@ -60,7 +60,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -70,7 +70,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Cargo.toml").expect("Can't read Cargo.toml");
   println!("{}", content)
 }
@@ -101,7 +101,7 @@ export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
 
-fn main() {
+pub fn main() {
   let content = fs::read_to_string("./Not_Exists_Cargo.toml")
     .expect("Can't read ./Not_Exists_Cargo.toml");
   println!("{}", content)
@@ -194,7 +194,7 @@ export EXAMPLE_SCRIPT_FILE="99_template.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
-fn main(){
+pub fn main(){
 
     println!("template");
 }
