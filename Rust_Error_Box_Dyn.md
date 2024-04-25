@@ -56,21 +56,28 @@ sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
 ## next step - create starter scripts for each example
 
 ```bash
-#!/bin/env bash
-FILES_DIRECTORY="examples";
-for FILE_NAME in $FILES_DIRECTORY/*;
-   do  
-   echo "Processing $FILE_NAME file...";
+#!/usr/bin/env bash -x
+FILES_DIR="examples";
+STARTER_FILES_DIR="run_examples";
+for FILE_NAME in $FILES_DIR/*;
+   do
+   echo "";  
+   echo "START => Processing $FILE_NAME file...";
    if [[ $FILE_NAME == *rs ]]; then
    SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
    echo "SCRIPT_FILE => $SCRIPT_FILE";
-   echo "generate SCRIPT_FILE => $SCRIPT_FILE";
-   printf "\n" >$SCRIPT_FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE
-   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE;
+   echo "generate SCRIPT_FILE => $STARTER_FILES_DIR/$(basename $SCRIPT_FILE)";
+   SCRIPT_FILE_NAME="$STARTER_FILES_DIR/$(basename $SCRIPT_FILE)";
+   echo "script_file_name => $SCRIPT_FILE_NAME";
+   printf "\n" >$SCRIPT_FILE_NAME &&  \
+   sed -i '1 i\#\!\/usr\/bin\/env bash' $STARTER_FILES_DIR/$SCRIPT_FILE
+   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE_NAME;
    else
    echo "NOT *.rs script => $FILE_NAME ";
    echo "next file ";
    fi
+   echo "FINISH => Processing $SCRIPT_FILE_NAME file...";
+   echo "";
 done
 
 ```
