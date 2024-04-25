@@ -2,25 +2,6 @@
 
 ## rest
 
-> In some cases, you can handle the error by falling back to a default value
-
-```bash
-cat << EoF > ./examples/fallback_value.rs
-
-// FORM HERE
-// https://www.sheshbabu.com/posts/rust-error-handling/
-use std::env;
-
-fn main() {
-  let port = env::var("PORT").unwrap_or("4711".to_string());
-  println!("{}", port);
-}
-
-// cargo fmt -- --emit=files ./examples/fallback_value.rs
-// cargo run --example fallback_value
-EoF
-```
-
 ## Bubble up the error- return number
 
 > for this examples need we the crate reqwest with features = ["blocking","json"]
