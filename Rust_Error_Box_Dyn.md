@@ -6,8 +6,6 @@
 
 ## Beginner's guide to Error Handling in Rust
 
-
-
 ## first step - extract all rust code block from markdown file
 
 ````bash
@@ -35,26 +33,12 @@ ls -l $SCRIPTS_OUTPUT
 date +"%B %d %H:%M"
 ````
 
-## next step - generate example script
+## next step - run generate example script
 
 ```bash
 # change to PROJECT_FOLDER
 sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
 ```
-
-## next step - extract build script
-
-<details>
-    <summary>create script with shebang - stupid method</summary>
-create script with shebang - stupid method
-
- ```bash
- #!/usr/bin/env bash
- FILE="/tmp/shebang_insert.sh";
- printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
- ```
-
-</details>
 
 ## next step - create starter scripts for each example
 
@@ -126,6 +110,14 @@ cargo run \
 --manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
 --example 03_err_use_fallback_value
 ```
+
+## create new script with shebang
+
+ ```bash
+ #!/usr/bin/env bash
+ FILE="/tmp/shebang_insert.sh";
+ printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && cat $FILE;
+ ```
 
 </details>
 
