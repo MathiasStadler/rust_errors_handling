@@ -12,12 +12,12 @@
 ## first step - extract all rust code block from markdown file
 
 ````bash
-export EXAMPLE_SCRIPT_FILE="01_generate_extract_rust_codeblock_from_md.sh"
-export EXAMPLE_SCRIPT_DIR="utilities"
-cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+export SCRIPT_FILE="01_generate_extract_rust_codeblock_from_md.sh"
+export SCRIPT_DIR="utilities"
+cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 #!/usr/bin/env bash
 export MD_SCRIPT="./Rust_Error_Box_Dyn.md"
-export SCRIPTS_OUTPUT="./utilities/extract_rust_codeblocks_from_markdown.sh"
+export SCRIPTS_OUTPUT="./utilities/02_extract_rust_codeblocks_from_markdown.sh"
 export DIRECTORY_OUTPUT="./run_examples"
 # test markdown file exits
 if [ -f ./\$MD_SCRIPT ]; then

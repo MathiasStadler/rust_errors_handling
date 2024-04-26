@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export MD_SCRIPT="./Rust_Error_Box_Dyn.md"
-export SCRIPTS_OUTPUT="./utilities/extract_rust_codeblocks_from_markdown.sh"
+export SCRIPTS_OUTPUT="./utilities/02_extract_rust_codeblocks_from_markdown.sh"
 export DIRECTORY_OUTPUT="./run_examples"
 # test markdown file exits
 if [ -f ./$MD_SCRIPT ]; then
