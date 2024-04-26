@@ -12,6 +12,7 @@
 ## first step - extract all rust code block from markdown file
 
 ````bash
+#!/usr/bin/env bash
 export SCRIPT_FILE="01_generate_extract_rust_codeblock_from_md.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
@@ -42,37 +43,44 @@ EoF
 ## next step - run generate example script
 
 ```bash
+#!/usr/bin/env bash
 # change to PROJECT_FOLDER
-sh +x ./run_examples/extract_rust_codeblocks_from_markdown.sh
+sh +x ./run_examples/02_extract_rust_codeblocks_from_markdown.sh
 ```
 
-## next step - generate starter scripts from each example
+## next step - extract generate starter scripts from each example
 
 ```bash
-#!/usr/bin/env bash -x
-FILES_DIR="examples";
+export SCRIPT_FILE="03_generate_starter_script.sh"
+export SCRIPT_DIR="utilities"
+cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
+#!/usr/bin/env bash
+set -euxo pipefail
 STARTER_FILES_DIR="run_examples";
+# test STARTER_FILES_DIR exits if not create
+[ ! -d \$STARTER_FILES_DIR ] && mkdir \$STARTER_FILES_DIR
+# loop
 for FILE_NAME in $FILES_DIR/*;
    do
    echo "";
-   echo "START => Processing $FILE_NAME file...";
-   if [[ $FILE_NAME == *rs ]]; then
+   echo "START => Processing \$FILE_NAME file...";
+   if [[ \$FILE_NAME == *rs ]]; then
    SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
-   echo "SCRIPT_FILE => $SCRIPT_FILE";
-   echo "generate SCRIPT_FILE => $STARTER_FILES_DIR/$(basename $SCRIPT_FILE)";
-   SCRIPT_FILE_NAME="$STARTER_FILES_DIR/$(basename $SCRIPT_FILE)";
-   echo "script_file_name => $SCRIPT_FILE_NAME";
-   printf "\n" >$SCRIPT_FILE_NAME &&  \
-   sed -i '1 i\#\!\/usr\/bin\/env bash' $SCRIPT_FILE_NAME
-   sed -n '/^\/\*/,/^\*\// p' <"$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>$SCRIPT_FILE_NAME;
+   echo "SCRIPT_FILE => \$SCRIPT_FILE";
+   SCRIPT_FILE_NAME="\$STARTER_FILES_DIR/\$(basename \$SCRIPT_FILE).sh";
+   echo "generate SCRIPT_FILE => \$STARTER_FILES_DIR/\$(basename \$SCRIPT_FILE)";
+   echo "script_file_name => \$SCRIPT_FILE_NAME";
+   printf "\n" >"\$SCRIPT_FILE_NAME" &&  \
+   sed -i '1 i\#\!\/usr\/bin\/env bash' "\$SCRIPT_FILE_NAME";
+   sed -n '/^\/\*/,/^\*\// p' <"\$FILE_NAME"|sed '/^\/\*/ d'|sed '/^\*\// d' >>"\$SCRIPT_FILE_NAME";
    else
-   echo "NOT *.rs script => $FILE_NAME ";
+   echo "NOT *.rs script => \$FILE_NAME ";
    echo "next file ";
    fi
-   echo "FINISH => Processing $SCRIPT_FILE_NAME file...";
+   echo "FINISH => Processing \$SCRIPT_FILE_NAME file...";
    echo "";
 done
-
+EoF
 ```
 
 ## next step - run all generated starter script for each examples
