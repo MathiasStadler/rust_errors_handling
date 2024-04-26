@@ -11,7 +11,7 @@ export FILE_NAME=01_err_ignore_error.rs
 export FILE_DIR_NAME=examples/
 git add $FILE_DIR_NAME/$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => $FILE_DIR_NAME/$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
