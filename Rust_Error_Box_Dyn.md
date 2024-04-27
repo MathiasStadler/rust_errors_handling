@@ -60,7 +60,7 @@ sh +x ./run_examples/02_extract_rust_codeblocks_from_markdown.sh
 export SCRIPT_FILE="03_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
-#!/usr/bin/sh
+#!/bin/env bash
 set -x
 FILES_DIR="examples";
 SCRIPT_TARGET_DIR="run_examples";
@@ -116,8 +116,11 @@ EoF
 ## next step - run all generated starter script for each examples
 
 ```bash
+export SCRIPT_FILE="03_generate_starter_script.sh"
+export SCRIPT_DIR="utilities"
+cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 #!/bin/env bash
-FILES_DIRECTORY="examples";
+FILES_DIRECTORY="run_examples";
 for FILE_NAME in $FILES_DIRECTORY/*;
    do
    echo "Processing $FILE_NAME file...";
@@ -324,7 +327,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -379,7 +382,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -439,7 +442,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -495,7 +498,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
@@ -583,12 +586,11 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
 ```
-
 
 ## rust script template
 
@@ -619,7 +621,7 @@ cargo check --examples
 cargo fmt -- --emit=files
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
-cargo run --example \$(echo \$FILE_NAME | cut -d . -f 1)
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF

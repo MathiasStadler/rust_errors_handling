@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/env bash
 set -x
 FILES_DIR="examples";
 SCRIPT_TARGET_DIR="run_examples";
