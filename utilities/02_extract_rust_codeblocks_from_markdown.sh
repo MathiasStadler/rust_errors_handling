@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="01_ok_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -32,6 +33,7 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="01_err_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -64,6 +66,7 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="02_ok_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -96,6 +99,7 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="02_err_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -128,6 +132,7 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -159,6 +164,7 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="03_err_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -190,14 +196,13 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="04_ok_bubble_up_the_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-
-pub fn main(){
-
-  // FORM HERE
+// FORM HERE
 // https://www.sheshbabu.com/posts/rust-error-handling/
+
 use std::collections::HashMap;
 
 fn get_current_date() -> Result<String, reqwest::Error> {
@@ -228,8 +233,6 @@ pub fn main() {
   }
 }
 
-}
-
 /*
 export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
@@ -251,10 +254,10 @@ cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
 echo "ReturnCode => \$?"
 */
 EoF
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="99_template.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-
 pub fn main(){
 
     println!("template");

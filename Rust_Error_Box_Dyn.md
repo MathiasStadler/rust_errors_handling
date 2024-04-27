@@ -544,12 +544,10 @@ cargo add reqwest --features blocking,json
 export EXAMPLE_SCRIPT_FILE="04_ok_bubble_up_the_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-use std::collections::HashMap;
-
-pub fn main(){
-
 // FORM HERE
 // https://www.sheshbabu.com/posts/rust-error-handling/
+
+use std::collections::HashMap;
 
 fn get_current_date() -> Result<String, reqwest::Error> {
   let url = "https://postman-echo.com/time/object";
@@ -577,8 +575,6 @@ pub fn main() {
     Ok(date) => println!("We've time travelled to {}!!", date),
     Err(e) => eprintln!("Oh noes, we don't know which era we're in! :( \n  {}", e),
   }
-}
-
 }
 
 /*
