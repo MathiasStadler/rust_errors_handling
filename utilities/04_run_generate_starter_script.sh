@@ -3,8 +3,6 @@ FILES_DIRECTORY="run_examples";
 for FILE_NAME in "$FILES_DIRECTORY"/*;
    do
    echo "Processing $FILE_NAME file...";
-   # SCRIPT_FILE="./$FILE_NAME.sh"
-   # echo " => $SCRIPT_FILE";
    if echo ""| grep -q 'sh' ;then
     echo "";
     echo "#################";
@@ -23,5 +21,7 @@ for FILE_NAME in "$FILES_DIRECTORY"/*;
     echo "NOT *.sh script => $FILE_NAME ";
     echo "next file ";
    fi
-done
+done;
+echo "finished ..";
+
 

@@ -120,31 +120,31 @@ export SCRIPT_FILE="04_run_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 #!/bin/env bash
-let FILES_DIRECTORY="run_examples";
+FILES_DIRECTORY="run_examples";
 for FILE_NAME in "\$FILES_DIRECTORY"/*;
    do
    echo "Processing \$FILE_NAME file...";
-   # SCRIPT_FILE="./$(echo \$FILE_NAME | cut -d . -f 1).sh"
-   # echo " => \$SCRIPT_FILE";
-   if echo "\$FILE_NAME"| grep -q 'sh' ;then
+   if echo ""| grep -q 'sh' ;then
     echo "";
     echo "#################";
     echo "start => \$FILE_NAME";
     echo "#################";
     echo "";
     # shellcheck source=/dev/null
-    source "\$FILE_NAME";
+    EXIT_CODE=source "\$FILE_NAME";
     echo "";
     echo "#################";
     echo "finished ..";
-    printf "ExitCode => \$? <= \$FILE_NAME\n";
+    printf "ExitCode => %s  <= %s \n" "\$EXIT_CODE" "\$FILE_NAME";
     echo "#################";
     echo "";
    else
     echo "NOT *.sh script => \$FILE_NAME ";
     echo "next file ";
    fi
-done
+done;
+echo "finished ..";
+
 
 EoF
 ```
