@@ -116,35 +116,37 @@ EoF
 ## next step - run all generated starter script for each examples
 
 ```bash
-export SCRIPT_FILE="03_generate_starter_script.sh"
+export SCRIPT_FILE="04_run_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 #!/bin/env bash
-FILES_DIRECTORY="run_examples";
-for FILE_NAME in $FILES_DIRECTORY/*;
+let FILES_DIRECTORY="run_examples";
+for FILE_NAME in "\$FILES_DIRECTORY"/*;
    do
-   echo "Processing $FILE_NAME file...";
-   # SCRIPT_FILE="./$(echo $FILE_NAME | cut -d . -f 1).sh"
-   # echo " => $SCRIPT_FILE";
-   if [[ $FILE_NAME == *sh ]]; then
+   echo "Processing \$FILE_NAME file...";
+   # SCRIPT_FILE="./$(echo \$FILE_NAME | cut -d . -f 1).sh"
+   # echo " => \$SCRIPT_FILE";
+   if echo "\$FILE_NAME"| grep -q 'sh' ;then
     echo "";
     echo "#################";
-    echo "start => $FILE_NAME";
+    echo "start => \$FILE_NAME";
     echo "#################";
     echo "";
-    source "$FILE_NAME";
+    # shellcheck source=/dev/null
+    source "\$FILE_NAME";
     echo "";
     echo "#################";
     echo "finished ..";
-    printf "ExitCode => $? <= $FILE_NAME\n";
+    printf "ExitCode => \$? <= \$FILE_NAME\n";
     echo "#################";
     echo "";
    else
-    echo "NOT *.sh script => $FILE_NAME ";
+    echo "NOT *.sh script => \$FILE_NAME ";
     echo "next file ";
    fi
 done
 
+EoF
 ```
 
 ## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
