@@ -50,6 +50,12 @@ sh +x ./run_examples/02_extract_rust_codeblocks_from_markdown.sh
 
 ## next step - extract generate starter scripts from each example
 
+> sed -i 's/^\/\*//' run_examples/01_ok_ignore_error.sh
+> sed -i 's/^\*\///' run_examples/01_ok_ignore_error.sh
+>
+> sed -i 's/^\/\*//' run_examples/02_ok_terminate_the_program.sh
+> sed -i 's/^\*\///' run_examples/02_ok_terminate_the_program.sh
+
 ```bash
 export SCRIPT_FILE="03_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
@@ -68,26 +74,31 @@ do
     if echo "\$FILE_NAME"| grep -q 'rs' ;then
         
         # echo "FILE_NAME => \$FILE_NAME";
-        
-        
         # SCRIPT_FILE_NAME="$(basename "\$FILE_NAME")";
         # echo "generate SCRIPT_FILE => \$STARTER_FILES_DIR/\$(basename "\$FILE_NAME")";
         # echo "script_file_name => \$SCRIPT_FILE_NAME";
         
         PLAIN_NAME="\$(echo "\$(basename "\$FILE_NAME")" | cut -d . -f 1)"
-        
         echo "PLAIN_NAME => \$PLAIN_NAME";
+        
         SCRIPT_FILE_NAME="\$PLAIN_NAME.sh";
         echo "SCRIPT_FILE_NAME => \$SCRIPT_FILE_NAME"
+
+        echo "path/script_name => => ./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
         
         # generate new file
         printf "\n" >"./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+        
         # add shebang
         sed -i '1 i\#\!\/usr\/bin\/env bash' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
         # add codeblock 
         sed -n '/^\/\*/,/^\*\// p' <"\$FILE_NAME" >>"./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+        
         # remove codeblock marker
-        sed '/^\/\*/ d'|sed '/^\*\// d' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+        # before code block
+        sed -i 's/^\/\*//' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+        # after codeblock
+        sed -i 's/^\*\///' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
     else
         echo "NOT *.rs script => \$FILE_NAME";
         echo "next file ";
