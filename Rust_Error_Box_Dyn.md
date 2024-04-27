@@ -60,7 +60,7 @@ sh +x ./run_examples/02_extract_rust_codeblocks_from_markdown.sh
 export SCRIPT_FILE="03_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
-#!/bin/env bash
+#!/usr/bin/env bash
 set -x
 FILES_DIR="examples";
 SCRIPT_TARGET_DIR="run_examples";
@@ -116,10 +116,11 @@ EoF
 ## next step - run all generated starter script for each examples
 
 ```bash
+#!/usr/bin/env bash
 export SCRIPT_FILE="04_run_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
-#!/bin/env bash
+#!/usr/bin/env bash
 FILES_DIRECTORY="run_examples";
 for FILE_NAME in "\$FILES_DIRECTORY"/*;
    do
@@ -152,6 +153,7 @@ EoF
 ## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
 
   ```bash
+  #!/usr/bin/env bash
   cd && \
   cd /tmp && \
   cargo run \
@@ -193,6 +195,7 @@ EoF
 ### Ok - MatchArms
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="01_ok_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -246,6 +249,7 @@ ReturnCode => 0
 ### Error - MatchArms
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="01_err_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -301,6 +305,7 @@ ReturnCode => 101
 ### Ok MatchArms
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="02_ok_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -356,6 +361,7 @@ ReturnCode => 0
 ### Err MatchArms
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="02_err_terminate_the_program.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -411,12 +417,13 @@ ReturnCode => 101
 - set env PORT for positive run => OK
 
 ```bash
-#!/bin/sh
+#!/usr/bin/env bash
 export PORT="01234"
 echo $PORT
 ```
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -465,7 +472,7 @@ ReturnCode => 0
 - unset env for negative run => Err
 
 ```bash
-#!/bin/sh
+#!/usr/bin/env bash
 unset PORT
 echo $PORT
 ```
@@ -473,6 +480,7 @@ echo $PORT
 - create program
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="03_err_use_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
@@ -523,6 +531,7 @@ ReturnCode => 0
 > for this examples need we the crate reqwest with features = ["blocking","json"]
 
 ```bash
+#!/usr/bin/env bash
 # only request w/o features
 # cargo add reqwest
 # with features
@@ -531,15 +540,16 @@ cargo add reqwest --features blocking,json
 ```
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="04_ok_bubble_up_the_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+use std::collections::HashMap;
 
 pub fn main(){
 
-  // FORM HERE
+// FORM HERE
 // https://www.sheshbabu.com/posts/rust-error-handling/
-use std::collections::HashMap;
 
 fn get_current_date() -> Result<String, reqwest::Error> {
   let url = "https://postman-echo.com/time/object";
@@ -597,10 +607,10 @@ EoF
 ## rust script template
 
 ```rust
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="99_template.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-
 pub fn main(){
 
     println!("template");
