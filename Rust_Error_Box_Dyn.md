@@ -738,7 +738,7 @@ EoF
 > The above code won’t compile as parse_from_str returns a chrono::format::ParseError error and not reqwest::Error
 > We can fix this by Boxing the errors
 
-### Ok - MatchArms /w Box
+### Ok - without any error -  MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -792,7 +792,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Err - first error - MatchArms /w Box
+### Err - with second error - the same err handling-  MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -810,12 +810,12 @@ fn main() {
 }
 
 fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
-    // First error With change
+    // First error with change
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/objectzzzz";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
     
-    // Second Without change
+    // Second error WITHOUT change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
     let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
@@ -848,7 +848,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Err - second error - MatchArms /w Box
+### Err - with second error - the same err handling-  MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -866,12 +866,12 @@ fn main() {
 }
 
 fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
-    // First  without change
+    // First error  WITHOUT change
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/object";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
     
-    // Second error
+    // Second error with change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}z", res["years"], res["months"] + 1, res["date"]);
     let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
@@ -903,8 +903,6 @@ echo "ReturnCode => \$?"
 */
 EoF
 ```
-
-
 
 ## rust script template
 
