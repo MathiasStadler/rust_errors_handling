@@ -796,7 +796,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_with_box_bubble_up_multiple_errors_first_error_.rs"
+export EXAMPLE_SCRIPT_FILE="05_err_with_box_bubble_up_multiple_errors_first_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use chrono::NaiveDate;
