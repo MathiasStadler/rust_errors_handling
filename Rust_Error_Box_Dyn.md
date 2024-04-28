@@ -678,7 +678,7 @@ function call that returned a different error value?
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_ok_bubble_up_multiple_errors.rs"
+export EXAMPLE_SCRIPT_FILE="05_ok_bubble_up_multiple_errors_does_not_work.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 // FROM HERE
@@ -730,38 +730,19 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+> [!WARNING] Code not to compile
+> The above code won’t compile as parse_from_str returns a chrono::format::ParseError error and not reqwest::Error
+> The above code won’t compile as parse_from_str returns a chrono::format::ParseError error and not reqwest::Error
+> We can fix this by Boxing the errors
+
 ### Err - MatchArms
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_bubble_up_multiple_errors.rs"
+export EXAMPLE_SCRIPT_FILE="05_ok_with_box.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
-// FROM HERE
-// https://github.com/sheshbabu/rust-error-handling-examples/blob/master/05-bubble-up-multiple-errors/src/main.rs
 
-use chrono::NaiveDate;
-use std::collections::HashMap;
-
-fn main() {
-    match get_current_date() {
-        Ok(date) => println!("We've time travelled to {}!!", date),
-        Err(e) => eprintln!("Oh noes, we don't know which era we're in! :( \n  {}", e),
-    }
-}
-
-fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
-    // Try changing the url to "https://postman-echo.com/time/objectzzzz"
-    let url = "https://postman-echo.com/time/objectzzzz";
-    let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
-
-    // Try changing the format to "{}-{}-{}z"
-    let formatted_date = format!("{}-{}-{}z", res["years"], res["months"] + 1, res["date"]);
-    let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
-    let date = parsed_date.format("%Y %B %d").to_string();
-
-    Ok(date)
-}
 
 /*
 export FILE_NAME=$EXAMPLE_SCRIPT_FILE
