@@ -904,6 +904,77 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+## Match boxed errors
+
+- So far, we’ve only printed the errors in the main function but not handled them.
+  If we want to handle and recover from boxed errors, we need to “downcast” them
+- Notice how we need to be aware of the implementation details (different errors inside)
+  of get_current_date to be able to downcast them inside main
+
+### Ok - match arm
+
+```rust
+#!/usr/bin/env bash
+export EXAMPLE_SCRIPT_FILE="05_ok_match boxed errors_in_fn_main.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+//FROM HERE
+//https://github.com/sheshbabu/rust-error-handling-examples/blob/master/06-match-boxed-errors/src/main.rs
+use chrono::NaiveDate;
+use std::collections::HashMap;
+
+fn main() {
+    match get_current_date() {
+        Ok(date) => println!("We've time travelled to {}!!", date),
+        Err(e) => {
+            eprintln!("Oh noes, we don't know which era we're in! :(");
+            if let Some(err) = e.downcast_ref::<reqwest::Error>() {
+                eprintln!("Request Error: {}", err)
+            } else if let Some(err) = e.downcast_ref::<chrono::format::ParseError>() {
+                eprintln!("Parse Error: {}", err)
+            }
+        }
+    }
+}
+
+fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
+    // Try changing the url to "https://postman-echo.com/time/objectzzzz"
+    let url = "https://postman-echo.com/time/object";
+    let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
+
+    // Try changing the format to "{}-{}-{}z"
+    let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
+    let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
+    let date = parsed_date.format("%Y %B %d").to_string();
+
+    Ok(date)
+}
+
+
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+# git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
 ## rust script template
 
 ```rust
@@ -938,6 +1009,9 @@ echo "ReturnCode => \$?"
 */
 EoF
 ```
+
+> [!NOTE]
+> Returning a trait object Box<dyn std::error::Error> is very convenient when we want to return multiple errors!
 
 ## [to highlight a "Note" and "Warning" using blockquote](https://github.com/orgs/community/discussions/16925)
 
