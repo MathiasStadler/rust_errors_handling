@@ -467,7 +467,7 @@ EoF
 ReturnCode => 0
 ```
 
-### Err MatchArms
+### Err - MatchArms
 
 - unset env for negative run => Err
 
@@ -528,6 +528,8 @@ ReturnCode => 0
 
 ## 04 - Bubble up the error
 
+- When you don’t have enough context to handle the error, you can bubble up (propagate) the error to the caller function
+
 > for this examples need we the crate reqwest with features = ["blocking","json"]
 
 ```bash
@@ -539,9 +541,11 @@ ReturnCode => 0
 cargo add reqwest --features blocking,json
 ```
 
+### Ok - MatchArms
+
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="04_ok_bubble_up_the_error.rs"
+export EXAMPLE_SCRIPT_FILE="04_ok_bubble_up_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 // FORM HERE
@@ -600,6 +604,69 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
+### Err - MatchArms
+
+```rust
+#!/usr/bin/env bash
+export EXAMPLE_SCRIPT_FILE="04_err_bubble_up_error.rs"
+export EXAMPLE_SCRIPT_DIR="examples/"
+cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
+// FORM HERE
+// https://www.sheshbabu.com/posts/rust-error-handling/
+
+use std::collections::HashMap;
+
+fn get_current_date() -> Result<String, reqwest::Error> {
+  let url = "https://postman-echo.com/time/object";
+  let result = reqwest::blocking::get(url);
+
+  let response = match result {
+    Ok(res) => res,
+    Err(err) => return Err(err),
+  };
+
+  let body = response.json::<HashMap<String, i32>>();
+
+  let json = match body {
+    Ok(json) => json,
+    Err(err) => return Err(err),
+  };
+
+  let date = json["ERROR_HERE"].to_string();
+
+  Ok(date)
+}  
+
+pub fn main() {
+  match get_current_date() {
+    Ok(date) => println!("We've time travelled to {}!!", date),
+    Err(e) => eprintln!("Oh noes, we don't know which era we're in! :( \n  {}", e),
+  }
+}
+
+/*
+export FILE_NAME=$EXAMPLE_SCRIPT_FILE
+export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
+git add \$FILE_DIR_NAME/\$FILE_NAME
+git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+# git push
+# cargo install --list
+# cargo update --workspace
+cargo clippy --fix
+cargo clippy --fix --examples
+# cargo check --verbose
+# cargo check --verbose --examples
+cargo check
+cargo check --examples
+cargo fmt -- --emit=files
+git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
+git push
+cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
+echo "ReturnCode => \$?"
+*/
+EoF
+```
+
 ## rust script template
 
 ```rust
@@ -617,7 +684,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
