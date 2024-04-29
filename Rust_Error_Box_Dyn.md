@@ -158,7 +158,7 @@ for FILE_NAME in "\$FILES_DIRECTORY"/*;
     echo "#################";
     echo "";
     # shellcheck source=/dev/null
-    EXIT_CODE=source "\$FILE_NAME";
+    EXIT_CODE=source sh +x "\$FILE_NAME";
     echo "";
     echo "#################";
     echo "finished ..";
