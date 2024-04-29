@@ -258,7 +258,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -287,7 +287,7 @@ ReturnCode => 0
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="01_err_ignore_error.rs"
+export EXAMPLE_SCRIPT_FILE="01_err_use_unwrap_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -312,7 +312,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -368,7 +368,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -424,7 +424,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -485,7 +485,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -542,7 +542,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -632,7 +632,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -696,7 +696,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -762,7 +762,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -820,7 +820,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -876,7 +876,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -932,7 +932,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -1001,7 +1001,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -1064,7 +1064,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -1129,7 +1129,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
@@ -1164,7 +1164,7 @@ cargo clippy --fix --examples
 # cargo check --verbose --examples
 cargo check
 cargo check --examples
-cargo fmt -- --emit=files
+cargo fmt -- --emit=files \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add AFTER housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
 git push
 cargo run --example "\$(echo \$FILE_NAME | cut -d . -f 1)"
