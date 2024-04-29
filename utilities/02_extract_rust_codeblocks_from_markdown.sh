@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+#!/usr/bin/env bash
 export EXAMPLE_SCRIPT_FILE="01_ok_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
