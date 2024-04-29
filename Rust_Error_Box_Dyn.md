@@ -112,11 +112,14 @@ do
         # add codeblock 
         sed -n '/^\/\*/,/^\*\// p' <"\$FILE_NAME" >>"./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
         
-        # remove codeblock marker
+        # remove 
+        # codeblock marker
         # before code block
         sed -i 's/^\/\*//' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
         # after codeblock
         sed -i 's/^\*\///' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+        # git push - minimize from too many git push during run
+        sed -i 's/git push//' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
     else
         echo "NOT *.rs script => \$FILE_NAME";
         echo "next file ";
