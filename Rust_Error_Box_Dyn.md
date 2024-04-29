@@ -179,7 +179,7 @@ echo "finished ..";
 EoF
 ```
 
-## next step - run generate starter script
+## next step - run starter script
 
 ```bash
 #!/usr/bin/env bash
@@ -233,7 +233,7 @@ sh +x ./utilities/04_run_generate_starter_script.sh
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="01_ok_ignore_error.rs"
+export EXAMPLE_SCRIPT_FILE="01_ok_use_unwrap_ignore_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
