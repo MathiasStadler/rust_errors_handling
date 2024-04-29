@@ -5,4 +5,4 @@
 # generate run_examples see md file
 run_examples/*.sh
 # generate utilities see md file
-/utilities/*.sh
+utilities/*.sh
