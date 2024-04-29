@@ -712,7 +712,7 @@ function call that returned a different error value?
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_ok_bubble_up_multiple_errors_does_not_work.rs"
+export EXAMPLE_SCRIPT_FILE="05_01_ok_bubble_up_multiple_errors_does_not_work.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 // FROM HERE
@@ -776,7 +776,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_ok_with_box_bubble_up_multiple_errors_.rs"
+export EXAMPLE_SCRIPT_FILE="05_02_ok_with_box_bubble_up_multiple_errors_.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use chrono::NaiveDate;
@@ -830,7 +830,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_with_box_bubble_up_multiple_errors_first_error.rs"
+export EXAMPLE_SCRIPT_FILE="05_03_err_with_box_bubble_up_multiple_errors_first_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use chrono::NaiveDate;
@@ -886,7 +886,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_with_box_bubble_up_multiple_errors_second_error.rs"
+export EXAMPLE_SCRIPT_FILE="05_04_err_with_box_bubble_up_multiple_errors_second_error.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use chrono::NaiveDate;
@@ -949,7 +949,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_ok_match_boxed_errors_in_fn_main.rs"
+export EXAMPLE_SCRIPT_FILE="05_05_ok_match_boxed_errors_in_fn_main.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 //FROM HERE
@@ -1011,7 +1011,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_request_match_boxed_errors_in_fn_main.rs"
+export EXAMPLE_SCRIPT_FILE="05_06_err_request_match_boxed_errors_in_fn_main.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 //FROM HERE
@@ -1074,7 +1074,7 @@ EoF
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="05_err_parse_match_boxed_errors_in_fn_main.rs"
+export EXAMPLE_SCRIPT_FILE="06_err_parse_match_boxed_errors_in_fn_main.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 //FROM HERE
