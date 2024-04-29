@@ -246,7 +246,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -300,7 +300,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -356,7 +356,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -412,7 +412,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -473,7 +473,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -530,7 +530,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
@@ -620,7 +620,7 @@ export FILE_NAME=$EXAMPLE_SCRIPT_FILE
 export FILE_DIR_NAME=$EXAMPLE_SCRIPT_DIR
 git add \$FILE_DIR_NAME/\$FILE_NAME
 git commit --all --message="-> Add BEFORE housekeeping => \$FILE_DIR_NAME/\$FILE_NAME"
-git push
+# git push
 # cargo install --list
 # cargo update --workspace
 cargo clippy --fix
