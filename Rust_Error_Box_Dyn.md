@@ -164,6 +164,9 @@ for FILE_NAME in "\$FILES_DIRECTORY_ALL"/*;
    # remove/comment cargo clippy , cargo check for each starter script
    # avoid double/multiple run cargo clippy
    sed -i 's/^cargo clippy/# cargo clippy/' "./\$FILE_NAME";
+   # remove/comment cargo fmt for each starter script
+   # avoid unnecessary fmt not save any change
+   sed -i 's/^cargo fmt/# cargo fmt/' "./\$FILE_NAME";
    echo "Processing \$FILE_NAME file...";
    if echo "\$FILE_NAME"| grep -q 'sh' ;then
     echo "";
