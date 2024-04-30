@@ -326,6 +326,7 @@ cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use chrono::NaiveDate;
 use std::collections::HashMap;
 
+#[allow(clippy::all)]
 fn main() {
     match get_current_date() {
         Ok(date) => println!("We've time travelled to {}!!", date),
@@ -333,6 +334,7 @@ fn main() {
     }
 }
 
+#[allow(clippy::all)]
 fn get_current_date() -> Result<String, reqwest::Error> {
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/object";
