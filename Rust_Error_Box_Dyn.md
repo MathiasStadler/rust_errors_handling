@@ -11,7 +11,7 @@
 
 ## first step - extract all rust code block from markdown file
 
-````bash
+```bash
 #!/usr/bin/env bash
 set -e
 #xuo
@@ -44,7 +44,7 @@ ls -l \$SCRIPTS_OUTPUT;
 # /bin/ls -ls "\$SCRIPTS_OUTPUT" | awk '{print "",\$10,\$7,\$8,\$9}';
 # date +"%B %d %H:%M";
 EoF
-````
+```
 
 ## next step - run generate script
 
@@ -90,29 +90,29 @@ do
     echo "";
     echo "START => Processing \$FILE_NAME file...";
     if echo "\$FILE_NAME"| grep -q 'rs' ;then
-        
+
         # echo "FILE_NAME => \$FILE_NAME";
         # SCRIPT_FILE_NAME="$(basename "\$FILE_NAME")";
         # echo "generate SCRIPT_FILE => \$STARTER_FILES_DIR/\$(basename "\$FILE_NAME")";
         # echo "script_file_name => \$SCRIPT_FILE_NAME";
-        
+
         PLAIN_NAME="\$(echo "\$(basename "\$FILE_NAME")" | cut -d . -f 1)"
         echo "PLAIN_NAME => \$PLAIN_NAME";
-        
+
         SCRIPT_FILE_NAME="\$PLAIN_NAME.sh";
         echo "SCRIPT_FILE_NAME => \$SCRIPT_FILE_NAME"
 
         echo "path/script_name => => ./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
-        
+
         # generate new file
         printf "\n" >"./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
-        
+
         # add shebang
         sed -i '1 i\#\!\/usr\/bin\/env bash' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
-        # add codeblock 
+        # add codeblock
         sed -n '/^\/\*/,/^\*\// p' <"\$FILE_NAME" >>"./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
-        
-        # remove 
+
+        # remove
         # codeblock marker
         # before code block
         sed -i 's/^\/\*//' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
@@ -153,6 +153,13 @@ cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 FILES_DIRECTORY="run_examples";
 for FILE_NAME in "\$FILES_DIRECTORY"/*;
    do
+   # comment cargo check for each starter script
+   # avoid double/multiple run
+   # git check - avoid multiple runs
+   sed -i 's/cargo check/# cargo check/' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+   # remove/comment cargo clippy , cargo check for each starter script
+   # avoid double/multiple run
+   sed -i 's/cargo clippy/# cargo clippy/' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
    echo "Processing \$FILE_NAME file...";
    if echo "\$FILE_NAME"| grep -q 'sh' ;then
     echo "";
@@ -189,23 +196,23 @@ sh +x ./utilities/04_run_generate_starter_script.sh
 
 ## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
 
-  ```bash
-  #!/usr/bin/env bash
-  cd && \
-  cd /tmp && \
-  cargo run \
-  --manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
-  --example 03_err_use_fallback_value
-  ```
+```bash
+#!/usr/bin/env bash
+cd && \
+cd /tmp && \
+cargo run \
+--manifest-path /home/trapapa/rust_errors_handling/Cargo.toml \
+--example 03_err_use_fallback_value
+```
 
 ## nice knowing - create new script with shebang
 
- ```bash
- #!/usr/bin/env bash
- FILE="/tmp/shebang_insert.sh";
- printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && \
- cat $FILE;
- ```
+```bash
+#!/usr/bin/env bash
+FILE="/tmp/shebang_insert.sh";
+printf "\n" >$FILE && sed -i '1 i\#\!\/usr\/bin\/env bash' $FILE && \
+cat $FILE;
+```
 
 </details>
 
@@ -434,7 +441,7 @@ EoF
 ```
 
 - output
--- bash: sh +x run_examples/02_err_terminate_the_program.sh
+  -- bash: sh +x run_examples/02_err_terminate_the_program.sh
 
 ```bash
 Finished dev [unoptimized + debuginfo] target(s) in 0.08s
@@ -495,7 +502,7 @@ EoF
 ```
 
 - output
--- cmd: sh +x run_examples/03_ok_use_fallback_value.sh
+  -- cmd: sh +x run_examples/03_ok_use_fallback_value.sh
 
 ```bash
  Finished dev [unoptimized + debuginfo] target(s) in 0.08s
@@ -552,7 +559,7 @@ EoF
 ```
 
 - output
--- cmd: sh +x run_examples/03_err_use_fallback_value.sh
+  -- cmd: sh +x run_examples/03_err_use_fallback_value.sh
 
 ```bash
 Compiling rust_errors_handling v0.1.0 (/home/trapapa/rust_errors_handling)
@@ -609,7 +616,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
   let date = json["years"].to_string();
 
   Ok(date)
-}  
+}
 
 pub fn main() {
   match get_current_date() {
@@ -673,7 +680,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
   let date = json["ERROR_HERE"].to_string();
 
   Ok(date)
-}  
+}
 
 pub fn main() {
   match get_current_date() {
@@ -708,8 +715,8 @@ EoF
 ## 05 Bubble up multiple errors
 
 - In the previous example, the get and json functions return a reqwest::Error
-error which we’ve propagated using the ? operator. But what if we’ve another
-function call that returned a different error value?
+  error which we’ve propagated using the ? operator. But what if we’ve another
+  function call that returned a different error value?
 
 ### Ok - MatchArms
 
@@ -741,7 +748,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
 
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
-    // Error here = wrong Result 
+    // Error here = wrong Result
     let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
     let date = parsed_date.format("%Y %B %d").to_string();
 
@@ -775,7 +782,7 @@ EoF
 > The above code won’t compile as parse_from_str returns a chrono::format::ParseError error and not reqwest::Error
 > We can fix this by Boxing the errors
 
-### Ok - without any error -  MatchArms /w Box
+### Ok - without any error - MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -829,7 +836,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Err - with second error - the same err handling-  MatchArms /w Box
+### Err - with second error - the same err handling- MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -851,7 +858,7 @@ fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/objectzzzz";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
-    
+
     // Second error WITHOUT change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
@@ -885,7 +892,7 @@ echo "ReturnCode => \$?"
 EoF
 ```
 
-### Err - with second error - the same err handling-  MatchArms /w Box
+### Err - with second error - the same err handling- MatchArms /w Box
 
 ```rust
 #!/usr/bin/env bash
@@ -907,7 +914,7 @@ fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/object";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
-    
+
     // Second error with change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}z", res["years"], res["months"] + 1, res["date"]);
