@@ -146,12 +146,17 @@ sh +x ./utilities/03_generate_starter_script.sh
 
 ```bash
 #!/usr/bin/env bash
-export SCRIPT_FILE="04_run_generate_starter_script.sh"
+export SCRIPT_FILE="04_run_all_generate_starter_script.sh"
 export SCRIPT_DIR="utilities"
 cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
 #!/usr/bin/env bash
 FILES_DIRECTORY="run_examples";
-for FILE_NAME in "\$FILES_DIRECTORY"/*;
+FILES_DIRECTORY_ALL="run_all_examples";
+# copy starter files and modify
+# cp -a ./run_examples/ ./run_all_examples
+cp -a ./"\$FILES_DIRECTORY" ./"\$FILES_DIRECTORY_ALL"
+
+for FILE_NAME in "\$FILES_DIRECTORY_ALL"/*;
    do
    # comment cargo check for each starter script
    # avoid double/multiple run
@@ -191,7 +196,7 @@ EoF
 ```bash
 #!/usr/bin/env bash
 # change to PROJECT_FOLDER
-sh +x ./utilities/04_run_generate_starter_script.sh
+sh +x ./utilities/04_run_all_generate_starter_script.sh
 ```
 
 ## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
