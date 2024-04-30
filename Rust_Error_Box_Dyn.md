@@ -362,7 +362,7 @@ ReturnCode => 101
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="02_ok_terminate_the_program.rs"
+export EXAMPLE_SCRIPT_FILE="02_ok_error_handling_expect.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 
@@ -399,7 +399,7 @@ EoF
 - output
 
 ```bash
-Running `target/debug/examples/02_ok_terminate_the_program`
+Running `target/debug/examples/02_ok_error_handling_expect`
 [package]
 name = "rust_errors_handling"
 version = "0.1.0"
@@ -418,7 +418,7 @@ ReturnCode => 0
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="02_err_terminate_the_program.rs"
+export EXAMPLE_SCRIPT_FILE="02_err_error_handling_expect.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::fs;
@@ -453,7 +453,7 @@ EoF
 ```
 
 - output
-  -- bash: sh +x run_examples/02_err_terminate_the_program.sh
+  -- bash: sh +x run_examples/02_err_error_handling_expect.rs
 
 ```bash
 Finished dev [unoptimized + debuginfo] target(s) in 0.08s
@@ -480,7 +480,7 @@ echo $PORT
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="03_ok_use_fallback_value.rs"
+export EXAMPLE_SCRIPT_FILE="03_ok_unwrap_or_to_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::env;
@@ -514,7 +514,7 @@ EoF
 ```
 
 - output
-  -- cmd: sh +x run_examples/03_ok_use_fallback_value.sh
+  -- cmd: sh +x run_examples/03_ok_unwrap_or_to_fallback_value.rs
 
 ```bash
  Finished dev [unoptimized + debuginfo] target(s) in 0.08s
@@ -537,7 +537,7 @@ echo $PORT
 
 ```rust
 #!/usr/bin/env bash
-export EXAMPLE_SCRIPT_FILE="03_err_use_fallback_value.rs"
+export EXAMPLE_SCRIPT_FILE="03_err_unwrap_or_to_fallback_value.rs"
 export EXAMPLE_SCRIPT_DIR="examples/"
 cat << EoF > ./$EXAMPLE_SCRIPT_DIR/$EXAMPLE_SCRIPT_FILE
 use std::env;
@@ -571,7 +571,7 @@ EoF
 ```
 
 - output
-  -- cmd: sh +x run_examples/03_err_use_fallback_value.sh
+  -- cmd: sh +x run_examples/03_err_unwrap_or_to_fallback_value.rs
 
 ```bash
 Compiling rust_errors_handling v0.1.0 (/home/trapapa/rust_errors_handling)
