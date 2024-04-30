@@ -154,16 +154,15 @@ FILES_DIRECTORY="run_examples";
 FILES_DIRECTORY_ALL="run_all_examples";
 # copy starter files and modify
 # cp -a ./run_examples/ ./run_all_examples
-cp -a ./"\$FILES_DIRECTORY" ./"\$FILES_DIRECTORY_ALL"
+cp -a ./"\$FILES_DIRECTORY"/* ./"\$FILES_DIRECTORY_ALL"
 
 for FILE_NAME in "\$FILES_DIRECTORY_ALL"/*;
    do
    # comment cargo check for each starter script
-   # avoid double/multiple run
-   # git check - avoid multiple runs
+   # avoid double/multiple run cargo check
    sed -i 's/^cargo check/# cargo check/' "./\$FILE_NAME";
    # remove/comment cargo clippy , cargo check for each starter script
-   # avoid double/multiple run
+   # avoid double/multiple run cargo clippy
    sed -i 's/^cargo clippy/# cargo clippy/' "./\$FILE_NAME";
    echo "Processing \$FILE_NAME file...";
    if echo "\$FILE_NAME"| grep -q 'sh' ;then
