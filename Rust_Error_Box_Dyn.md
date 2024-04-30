@@ -206,6 +206,36 @@ EoF
 sh +x ./utilities/04_run_all_generate_starter_script.sh
 ```
 
+## next step - project cleanup
+
+```bash
+#!/usr/bin/env bash
+export SCRIPT_FILE="99_project_cleanup.sh"
+export SCRIPT_DIR="utilities"
+cat << EoF > ./$SCRIPT_DIR/$SCRIPT_FILE
+#!/usr/bin/env bash
+echo "Do you want cleanup this project ? Type => yes";
+read -r  clean_up;
+if [ "$clean_up" = "yes" ];then
+  echo "cleanup" && \
+  cargo clean && \
+  cargo clean --release
+  ls -l ./target
+else
+  echo "Do nothing. By :-)";
+fi
+
+EoF
+```
+
+## next step - run cleanup script
+
+```bash
+#!/usr/bin/env bash
+# change to PROJECT_FOLDER
+sh +x ./utilities/99_project_cleanup.sh
+```
+
 ## nice knowing - run rust script with Cargo.toml from [another](https://www.nativespeakeronline.com/confusing-words/the-difference-between-another-other-and-different) / different path
 
 ```bash
