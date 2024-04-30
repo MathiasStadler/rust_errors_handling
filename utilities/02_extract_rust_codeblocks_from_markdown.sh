@@ -224,7 +224,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
   let date = json["years"].to_string();
 
   Ok(date)
-}  
+}
 
 pub fn main() {
   match get_current_date() {
@@ -283,7 +283,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
   let date = json["ERROR_HERE"].to_string();
 
   Ok(date)
-}  
+}
 
 pub fn main() {
   match get_current_date() {
@@ -340,7 +340,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
 
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
-    // Error here = wrong Result 
+    // Error here = wrong Result
     let parsed_date = NaiveDate::parse_from_str(formatted_date.as_str(), "%Y-%m-%d")?;
     let date = parsed_date.format("%Y %B %d").to_string();
 
@@ -436,7 +436,7 @@ fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/objectzzzz";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
-    
+
     // Second error WITHOUT change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}", res["years"], res["months"] + 1, res["date"]);
@@ -487,7 +487,7 @@ fn get_current_date() -> Result<String, Box<dyn std::error::Error>> {
     // Try changing the url to "https://postman-echo.com/time/objectzzzz"
     let url = "https://postman-echo.com/time/object";
     let res = reqwest::blocking::get(url)?.json::<HashMap<String, i32>>()?;
-    
+
     // Second error with change
     // Try changing the format to "{}-{}-{}z"
     let formatted_date = format!("{}-{}-{}z", res["years"], res["months"] + 1, res["date"]);

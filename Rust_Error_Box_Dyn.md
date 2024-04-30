@@ -156,10 +156,10 @@ for FILE_NAME in "\$FILES_DIRECTORY"/*;
    # comment cargo check for each starter script
    # avoid double/multiple run
    # git check - avoid multiple runs
-   sed -i 's/cargo check/# cargo check/' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+   sed -i 's/^cargo check/# cargo check/' "./$FILE_NAME";
    # remove/comment cargo clippy , cargo check for each starter script
    # avoid double/multiple run
-   sed -i 's/cargo clippy/# cargo clippy/' "./\$SCRIPT_TARGET_DIR/\$SCRIPT_FILE_NAME";
+   sed -i 's/^cargo clippy/# cargo clippy/' "./$FILE_NAME";
    echo "Processing \$FILE_NAME file...";
    if echo "\$FILE_NAME"| grep -q 'sh' ;then
     echo "";
