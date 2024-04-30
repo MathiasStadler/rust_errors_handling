@@ -167,6 +167,8 @@ for FILE_NAME in "\$FILES_DIRECTORY_ALL"/*;
    # remove/comment cargo fmt for each starter script
    # avoid unnecessary fmt not save any change
    sed -i 's/^cargo fmt/# cargo fmt/' "./\$FILE_NAME";
+   # avoid unnecessary git action script already save inside md file
+   sed -i 's/^git/# git/' "./\$FILE_NAME";
    echo "Processing \$FILE_NAME file...";
    if echo "\$FILE_NAME"| grep -q 'sh' ;then
     echo "";
